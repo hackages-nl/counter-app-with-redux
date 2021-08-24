@@ -15,3 +15,11 @@ export const updateStepAction = (payload) => {
     payload,
   };
 };
+
+export const ADD_TODO = "ADD todo";
+export const addTodoAction = (payload) => {
+  return {
+    type: ADD_TODO,
+    payload,
+  };
+};

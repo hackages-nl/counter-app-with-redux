@@ -1,3 +1,5 @@
+import {ADD_TODO} from "./action";
+
 export function counterReducer(count = 0, action) {
   if (action.type === "INCREMENT") {
     return count + action.payload;
@@ -13,4 +15,11 @@ export function stepReducer(step = 1, action) {
     return action.payload;
   }
   return step;
+}
+
+export function todosReducer(todos = ["Learn React"], action) {
+  if (action.type === ADD_TODO) {
+    return [...todos, action.payload];
+  }
+  return todos;
 }
