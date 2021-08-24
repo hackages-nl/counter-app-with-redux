@@ -2,7 +2,7 @@ import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { decrementAction, incrementAction, updateStepAction } from '../store/action'
 
-export function Counter() {
+export default function Counter() {
     const dispatch = useDispatch();
     const stepRef = React.createRef(1);
     const {count, step} = useSelector(state => {
