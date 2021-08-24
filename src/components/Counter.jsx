@@ -1,19 +1,17 @@
 import React from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import { decrementAction, incrementAction } from '../store/action'
+import { CounterContext } from '../context/counter.context'
 
 export function Counter() {
-    const dispatch = useDispatch();
-    const stepRef = React.createRef(1);
-    const count = useSelector(state => state)
-    const increment = () => dispatch(incrementAction(parseInt(stepRef.current.value)))
-    const decrement = () => dispatch(decrementAction(parseInt(stepRef.current.value)))
+    const stepRef = React.createRef(0);
+    const {count, increment, decrement} = React.useContext(CounterContext);    
 
-    return (<>
-        <h1>Counter's value {count}</h1>
-        <label htmlFor="step"></label>
-        <input type="text" name="step" ref={stepRef} />
-        <button onClick={increment}>+</button>
-        <button onClick={decrement}>-</button>
-    </>)
+    return (
+        <>
+            <h1>Counter's value {count}</h1>
+            <label htmlFor="step"></label>
+            <input type="text" name="step" ref={stepRef} />
+            <button onClick={() => increment(parseInt(stepRef.current.value))}>+</button>
+            <button onClick={() => decrement(parseInt(stepRef.current.value))}>-</button>
+        </>
+    )
 }
