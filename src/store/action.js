@@ -8,3 +8,10 @@ export const decrementAction = (payload) => {
     payload,
   };
 };
+
+export const updateStepAction = (payload) => {
+  return {
+    type: "STEP_CHANGED",
+    payload,
+  };
+};

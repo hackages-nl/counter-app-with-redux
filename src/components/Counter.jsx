@@ -1,18 +1,24 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { decrementAction, incrementAction } from '../store/action'
+import { decrementAction, incrementAction, updateStepAction } from '../store/action'
 
 export function Counter() {
     const dispatch = useDispatch();
     const stepRef = React.createRef(1);
-    const count = useSelector(state => state)
-    const increment = () => dispatch(incrementAction(parseInt(stepRef.current.value)))
-    const decrement = () => dispatch(decrementAction(parseInt(stepRef.current.value)))
+    const {count, step} = useSelector(state => {
+        return {
+            count: state.count,
+            step: state.step
+        }
+    })
+    const increment = () => dispatch(incrementAction(step));
+    const decrement = () => dispatch(decrementAction(step));
+    const updateStep = (value) => dispatch(updateStepAction(parseInt(value)));
 
     return (<>
         <h1>Counter's value {count}</h1>
         <label htmlFor="step"></label>
-        <input type="text" name="step" ref={stepRef} />
+        <input type="text" name="step" onChange={(event) => updateStep(event.target.value)} />
         <button onClick={increment}>+</button>
         <button onClick={decrement}>-</button>
     </>)
